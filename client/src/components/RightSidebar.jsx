@@ -17,14 +17,14 @@ const RightSideBar = () => {
   }, [message])
 
   return selectedUser && (
-    <div className={` bg-[#8185b2]/10 text-white w-full relative overflow-y-scroll ${selectedUser ? "mx-md:hidden" : ""}`}>
+    <div className={` bg-[#8185b2]/10 text-white w-full h-full relative overflow-y-scroll ${selectedUser ? "mx-md:hidden" : ""}`}>
 
       {/* phone screen  */}
       {/* {onClose && (
         <button onClick={onClose} className="absolute top-2 right-2 text-white">❌</button>
       )} */}
 
-      <div className="pt-5 flex flex-col items-center gap-2 text-xs font-light mx-auto">
+      <div className="pt-20 flex flex-col items-center gap-2 text-xs font-light mx-auto">
         <img src={selectedUser?.profilePic || assets.avatar_icon} alt="" className="w-20 aspect-[1/1] rounded-full" />
         <h1 className="px-5 text-xl font-mediaum mx-auto flex items-center gap-2">
 
@@ -53,7 +53,7 @@ const RightSideBar = () => {
 
         </div>
       </div>
-      <button onClick={() => logout()} className="absolute bottom-5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-400 to-violet-600 text-white border-none 
+      <button onClick={() => logout()} className="absolute  bottom-5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-400 to-violet-600 text-white border-none 
       text-sm font-light py-2 px-20 rounded-full cursor-pointer">
         Logout
       </button>

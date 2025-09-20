@@ -39,7 +39,7 @@ const ProfilePage = () => {
         <img
           src={assets.arrow_icon}
           alt=""
-          className="md:hidden w-7 top-4 left-4 cursor-pointer"
+          className="md:hidden xl:hidden w-7 top-4 left-4 cursor-pointer"
           onClick={() => navigate("/")} // optional: navigate back
         />
 
