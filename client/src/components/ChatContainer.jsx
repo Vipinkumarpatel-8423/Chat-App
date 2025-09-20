@@ -5,7 +5,7 @@ import AuthContext from '../../context/AuthContext';
 import ChatContext from '../../context/ChatContext';
 import toast from "react-hot-toast";
 
-const ChatContainer = () => {
+const ChatContainer = ({ onShowRightSidebar }) => {
   const { authUser, onlineUser } = useContext(AuthContext);
   const { message, sendMessage, selectedUser, setSelectedUser, getMessages } = useContext(ChatContext);
 
@@ -56,6 +56,13 @@ const ChatContainer = () => {
         <p className="flex-1 text-lg text-white flex items-center gap-2">{selectedUser.fullName}
           {onlineUser.includes(selectedUser._id) && < span className="w-2 h-2 rounded-full bg-green-500"></span>}
         </p>
+        {/* Back arrow for mobile */}
+
+        <img onClick={onShowRightSidebar} src={assets.help_icon} alt="" className="md:hidden max-w-5 cursor-pointer" />
+
+        {/* end phone  */}
+
+
         <img onClick={() => setSelectedUser(null)} src={assets.arrow_icon} alt="" className="md:hidden max-w-7" />
         <img src={assets.help_icon} alt="" className="max-md:hidden max-w-5" />
       </div>

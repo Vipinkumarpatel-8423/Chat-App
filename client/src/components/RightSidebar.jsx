@@ -18,10 +18,18 @@ const RightSideBar = () => {
 
   return selectedUser && (
     <div className={` bg-[#8185b2]/10 text-white w-full relative overflow-y-scroll ${selectedUser ? "mx-md:hidden" : ""}`}>
+
+      {/* phone screen  */}
+      {/* {onClose && (
+        <button onClick={onClose} className="absolute top-2 right-2 text-white">❌</button>
+      )} */}
+
       <div className="pt-5 flex flex-col items-center gap-2 text-xs font-light mx-auto">
         <img src={selectedUser?.profilePic || assets.avatar_icon} alt="" className="w-20 aspect-[1/1] rounded-full" />
         <h1 className="px-5 text-xl font-mediaum mx-auto flex items-center gap-2">
+
           {/* {onlineUsers.includes(selectedUser._id) && <p className="w-2 h-2 rounded-full bg-green-500"></p>} */}
+
           {Array.isArray(onlineUsers) && selectedUser?._id &&
             onlineUsers.includes(selectedUser._id) && (
               <p className="w-2 h-2 rounded-full bg-green-500"></p>
