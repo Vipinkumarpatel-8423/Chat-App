@@ -35,10 +35,18 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body
+
     // extra code
+
     // if (!email || !password) {
     //   return res.status(400).json({ success: false, message: "Email and password are required." })
     // }
+    // if (!userData) {
+    //   return res.json({ success: false, message: "User not found" })
+    // }
+    // const isPasswordCorrect = await bcrypt.compare(password, userData.password)
+
+
     // till that
     const userData = await User.findOne({ email })
     console.log(userData, "userData")

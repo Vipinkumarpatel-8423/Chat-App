@@ -17,14 +17,14 @@ const RightSideBar = () => {
   }, [message])
 
   return selectedUser && (
-    <div className={` bg-[#8185b2]/10 text-white w-full h-full relative overflow-y-scroll ${selectedUser ? "mx-md:hidden" : ""}`}>
+    <div className={` bg-[#8185b2]/10 text-white w-full h-full relative overflow-y-scroll ${selectedUser ? "max-md:hidden" : ""}`}>
 
       {/* phone screen  */}
       {/* {onClose && (
         <button onClick={onClose} className="absolute top-2 right-2 text-white">❌</button>
       )} */}
 
-      <div className="pt-20 flex flex-col items-center gap-2 text-xs font-light mx-auto">
+      <div className="pt-10 flex flex-col items-center gap-2 text-xs font-light mx-auto">
         <img src={selectedUser?.profilePic || assets.avatar_icon} alt="" className="w-20 aspect-[1/1] rounded-full" />
         <h1 className="px-5 text-xl font-mediaum mx-auto flex items-center gap-2">
 
@@ -43,7 +43,7 @@ const RightSideBar = () => {
       <hr className="border-[#ffffff50] my-4" />
       <div className="px-5 text-xs">
         <p>Media</p>
-        <div className="mt-2 max-h-[200px] overflow-y-scroll grid grid-cols-2 gap-4 opacity-80">
+        <div className="mt-2 max-h-[120px] overflow-y-scroll grid grid-cols-2 gap-4 opacity-80">
           {msgImages.map((url, index) => (
             <div key={index} onClick={() => window.open(url)}
               className="cursor-pointer rounded">

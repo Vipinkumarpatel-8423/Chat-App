@@ -7,21 +7,23 @@ import ChatContext from '../../context/ChatContext';
 const Sidebar = () => {
   const { getUsers, users, selectedUser, setSelectedUser, unseenMessages, setUnseenMessages } = useContext(ChatContext);
 
-  const { logout, onlineUser, authUser } = useContext(AuthContext)
+  console.log(unseenMessages, "unseenMessages")
+
+  const { logout, onlineUser } = useContext(AuthContext)
 
   const navigate = useNavigate();
 
   const [input, setInput] = useState("");
   const [showMenu, setShowMenu] = useState(false);
 
-  // const filteredUsers = input ? users.filter((user) =>
-  //   user.fullName.toLowerCase().includes(input.toLowerCase())) : users;
+  const filteredUsers = input ? users.filter((user) =>
+    user.fullName.toLowerCase().includes(input.toLowerCase())) : users;
 
-  const filteredUsers = input
-    ? (users || []).filter((u) =>
-      u._id !== authUser._id && u.fullName?.toLowerCase().includes(input.toLowerCase())
-    )
-    : (users || []).filter((u) => u._id !== authUser._id);
+  // const filteredUsers = input
+  //   ? (users || []).filter((u) =>
+  //     u._id !== authUser._id && u.fullName?.toLowerCase().includes(input.toLowerCase())
+  //   )
+  //   : (users || []).filter((u) => u._id !== authUser._id);
 
 
   useEffect(() => {
@@ -29,7 +31,7 @@ const Sidebar = () => {
   }, [onlineUser])
 
   return (
-    <div className={`bg-[#8185B2]/10 h-full p-5 rounded-r-xl overflow-y-scroll text-white ${selectedUser ? "mx-md:hidden" : ""}`}>
+    <div className={`bg-[#8185B2]/10 h-full p-5 rounded-r-xl overflow-y-scroll  text-white ${selectedUser ? "max-md:hidden" : ""}`}>
       <div className="pb-5">
         <div className="flex justify-between items-center">
           <img src={assets.logo} alt="log" className='max-w-40' />
@@ -76,8 +78,8 @@ const Sidebar = () => {
             setSelectedUser(user);
             setUnseenMessages(prev => ({ ...prev, [user._id]: 0 }))
           }}
-            key={index} className={`relative flex items-center gap-2 p-2 pl-4 rounded-full cursor-pointer max-sm:text-sm ${selectedUser?._id === user._id && "bg-[#282142]/50"}`}>
-            <img src={user?.profilePic || assets.avatar_icon} alt="" className='w-[35px] rounded-full' />
+            key={index} className={`relative flex items-center gap-2 p-2 pl-2 rounded-full cursor-pointer max-sm:text-sm ${selectedUser?._id === user._id && "bg-[#282142]/50"}`}>
+            <img src={user?.profilePic || assets.avatar_icon} alt="" className='w-[35px] h-[35px] rounded-full' />
             <div className='flex flex-col leading-5 px-3'>
               <p>{user.fullName}</p>
               {

@@ -4,14 +4,17 @@ import { formateMessageTime } from "../lib/utils";
 import AuthContext from '../../context/AuthContext';
 import ChatContext from '../../context/ChatContext';
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
-const ChatContainer = ({ onShowRightSidebar }) => {
+const ChatContainer = () => {
   const { authUser, onlineUser } = useContext(AuthContext);
   const { message, sendMessage, selectedUser, setSelectedUser, getMessages } = useContext(ChatContext);
+  const navigate = useNavigate();
 
   const scrollEnd = useRef(null);
 
   const [input, setInput] = useState("");
+
 
   //Handle sending message
   const handleSendMessage = async (e) => {
@@ -52,23 +55,23 @@ const ChatContainer = ({ onShowRightSidebar }) => {
     <div className="h-full overflow-scroll relative backdrop-blur-lg">
       {/* Header section */}
       <div className="flex items-center gap-3 py-3 mx-4 border-b border-stone-500">
-        <img src={selectedUser.profilePic || assets.avatar_icon} alt="" className="w-8 rounded-full " />
+        <img src={selectedUser.profilePic || assets.avatar_icon} alt="" className="w-8 h-8 rounded-full " />
         <p className="flex-1 text-lg text-white flex items-center gap-2">{selectedUser.fullName}
           {onlineUser.includes(selectedUser._id) && < span className="w-2 h-2 rounded-full bg-green-500"></span>}
         </p>
         {/* Back arrow for mobile */}
 
-        <img onClick={onShowRightSidebar} src={assets.help_icon} alt="" className="md:hidden max-w-5 cursor-pointer" />
+        {/* <img onClick={() => navigate("/profile")} src={assets.help_icon} alt="" className="md:hidden max-w-5 cursor-pointer" /> */}
 
         {/* end phone  */}
 
 
         <img onClick={() => setSelectedUser(null)} src={assets.arrow_icon} alt="" className="md:hidden max-w-7" />
-        <img src={assets.help_icon} alt="" className="max-md:hidden max-w-5" />
+        <img onClick={() => navigate("/profile")} src={assets.help_icon} alt="" className="md:hidden max-w-5 cursor-pointer" />
       </div>
       {/* chat section */}
 
-      <div className=" flex flex-col h-[calc(100%-120px)] overflow-y-scroll p-3 pb-6">
+      <div className=" flex flex-col h-[calc(100%-120px)] overflow-y-auto p-3 pb-6">
         {message && message.map((msg, index) => (
           <div key={index} className={`flex items-end gap-2 justify-end ${msg.senderId !== authUser._id && "flex-row-reverse"}`}>
             {msg.image ? (
@@ -107,7 +110,7 @@ const ChatContainer = ({ onShowRightSidebar }) => {
 
     // if you are not selected user then show this content
 
-    <div className="flex flex-col items-center justify-center gap-2 text-gray-500 bg-white/10 max-md:hidden ">
+    <div className="flex flex-col h-full items-center justify-center gap-2 text-gray-500 bg-white/10 max-md:hidden ">
       <img src={assets.logo_icon} alt="" className="max-w-16" />
       <p className="text-lg font-medium text-white ">Chat Anytime, anywhere</p>
     </div>
