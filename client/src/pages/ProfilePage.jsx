@@ -73,7 +73,7 @@ const ProfilePage = () => {
             className="p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-voilet-500">
           </textarea>
           <button type="submit"
-            className="bg-gradient-to-r from-purple-400 to-voilet-600 text-white p-2 rounded-full text-lg cursor-pointer">Save</button>
+            className="bg-gradient-to-r from-purple-400 to-violet-600 text-white p-2 rounded-full text-lg cursor-pointer">Save</button>
         </form>
         <img src={authUser?.profilePic || assets.logo_icon}
           alt="" className={`max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10 ${selectedImg && "rounded-full"}`} />

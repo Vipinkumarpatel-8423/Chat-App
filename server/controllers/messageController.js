@@ -14,6 +14,8 @@ export const getUsersForSidebar = async (req, res) => {
       const message = await Message.find({ senderId: user._id, receiverId: userId, seen: false })
       if (message.length > 0) {
         unseenMessages[user._id] = message.length;
+      } else {
+        unseenMessages[user._id] = 0
       }
     })
     await Promise.all(promises);
@@ -55,7 +57,7 @@ export const getallMessages = async (req, res) => {
 export const markMessageAsSeen = async (req, res) => {
   try {
     const { id } = req.params;
-    await Message.findByIdAndUpdate(id, { seen: true })
+    await Message.findByIdAndUpdate(id, { seen: true }, { new: true })
     res.json({ success: true })
   } catch (error) {
     console.log(error.message);

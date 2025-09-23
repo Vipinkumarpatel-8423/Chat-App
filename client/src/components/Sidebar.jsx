@@ -7,9 +7,9 @@ import ChatContext from '../../context/ChatContext';
 const Sidebar = () => {
   const { getUsers, users, selectedUser, setSelectedUser, unseenMessages, setUnseenMessages } = useContext(ChatContext);
 
-  console.log(unseenMessages, "unseenMessages")
 
   const { logout, onlineUser } = useContext(AuthContext)
+
 
   const navigate = useNavigate();
 
@@ -82,20 +82,18 @@ const Sidebar = () => {
             <img src={user?.profilePic || assets.avatar_icon} alt="" className='w-[35px] h-[35px] rounded-full' />
             <div className='flex flex-col leading-5 px-3'>
               <p>{user.fullName}</p>
-              {
+              {/* {
                 onlineUser.includes(user._id)
                   ? <span className='text-green-400 text-xs'>Online</span>
                   : <span className='text-neutral-400 text-xs'>Ofline</span>
-              }
-
-              {/* {
-                Array.isArray(onlineUser) && user?._id
-                  ? (onlineUser.includes(user._id)
-                    ? <span className='text-green-400 text-xs'>Online</span>
-                    : <span className='text-neutral-400 text-xs'>Offline</span>
-                  )
-                  : <span className='text-neutral-400 text-xs'>Offline aa</span>
               } */}
+              {
+                Array.isArray(onlineUser) && user?._id &&
+                (onlineUser.includes(user._id.toString())
+                  ? <span className='text-green-400 text-xs'>Online</span>
+                  : <span className='text-neutral-400 text-xs'>Offline</span>
+                )
+              }
             </div>
             {
               unseenMessages[user._id] > 0 && <p className="absolute top-4 right-1 text-xs h-4 w-4 flex justify-center items-center rounded-full bg-violet-500/50">{unseenMessages[user._id]}</p>
